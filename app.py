@@ -4,27 +4,25 @@ st.set_page_config(
     page_title="Donbas-Dashboard",
     page_icon="📜",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
-st.markdown(
-    '<div lang="de" translate="no" class="notranslate" style="display:none">notranslate</div>',
-    unsafe_allow_html=True,
-)
+for target in ("pages/Dashboard.py", "pages/1_Dashboard.py"):
+    try:
+        st.switch_page(target)
+        st.stop()
+    except Exception:
+        continue
 
 st.title("Donbas-Konflikt – Chronologisches Dashboard")
 st.markdown("""
-Willkommen.
+**Weiter zum Inhalt**
 
-Dieses Dashboard bietet eine **chronologische** Darstellung der Vorgeschichte und des Donbas-Konflikts
-mit **harten Fakten**, **Lesarten im Vergleich** (ukrainisch/westlich · russisch) und **Streitpunkten**.
+1. Oben links das **☰-Menü** öffnen (Sidebar), falls nichts Sichtbares links ist.  
+2. Dort **Dashboard** anklicken.
 
-### Nutzung
-- Links in der Sidebar: **Dashboard**
-- **Suche** und **Filter** (Zeitraum, Seite, Tags)
-- Ereignisse chronologisch lesen, Querverweise nutzen
+Oder diese Adresse öffnen (an deine App-URL anhängen):
 
-**Hinweis:** Öffentliche Version ist **nur Lesen und Suchen**. Redaktion erfolgt lokal.
+`/Dashboard`
 """)
-
-st.info("Öffne links die Seite **Dashboard**.")
+st.page_link("pages/Dashboard.py", label="→ Zum Dashboard", icon="📜")
