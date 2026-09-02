@@ -3071,7 +3071,9 @@
       "e088",
       "e054",
       "e015",
-      "e006"
+      "e006",
+      "e093",
+      "e094"
     ],
     "clips": [],
     "tags": [
@@ -3110,7 +3112,9 @@
       "e011",
       "e084",
       "e085",
-      "e082"
+      "e082",
+      "e093",
+      "e094"
     ],
     "clips": [],
     "tags": [
@@ -3124,5 +3128,71 @@
     "view_ua_west": "Unprovozierter Angriffskrieg gegen einen souveränen Staat; Bruch der UN-Charta, von Budapest und der gesamten Nach-1991-Ordnung. «Entnazifizierung» sei Vorwand.",
     "view_ru": "Präventive und erzwungene Operation nach jahrelanger Missachtung russischer Sicherheitsinteressen, nach Minsk-Bruch und nach Bedrohung des Donbas; Ziel Schutz und strategische Neutralisierung der Ukraine.",
     "streitpunkt": "Unprovozierte Aggression vs. erzwungene Reaktion auf eine als existenziell empfundene Sicherheitslage – und die Tragfähigkeit der genannten Kriegsziele."
+  },
+  {
+    "id": "e093",
+    "date": "2022-03-02",
+    "year": 2022,
+    "thema": "Krieg 2022 · Südukraine",
+    "title": "Russische Einnahme von Cherson und Vormarsch in der Oblast Saporischschja",
+    "short": "Frühjahr 2022: Russische Truppen nehmen Cherson ein und besetzen große Teile der Oblast Saporischschja einschließlich des Gebiets um das Kernkraftwerk. Damit liegen neben Donezk und Luhansk zwei weitere ukrainische Regionen unter russischer Kontrolle.",
+    "background": "Siehe Fakt und Lesarten.",
+    "sources": [],
+    "cross_refs": [
+      "e072",
+      "e071",
+      "e017",
+      "e094"
+    ],
+    "clips": [],
+    "tags": [
+      "2022",
+      "Cherson",
+      "Saporischschja",
+      "Besatzung",
+      "Südukraine"
+    ],
+    "actor": "RU",
+    "status": "freigegeben",
+    "fact": "**Russische Einnahme von Cherson und Vormarsch in der Oblast Saporischschja (März 2022)**\n\n**Was geschah**\nNach dem Angriff vom 24. Februar 2022 stießen russische Kräfte von der Krim nach Norden vor. Anfang März fiel die Stadt **Cherson** – die erste größere Oblasthauptstadt, die unter russische Kontrolle geriet. Parallel wurde ein großer Teil der Oblast **Saporischschja** besetzt, darunter das Gebiet um das Kernkraftwerk Saporischschja, das größte in Europa. Die Stadt Saporischschja selbst blieb unter ukrainischer Kontrolle; der Süden und Südosten der Oblast nicht.\n\nDamit entstanden 2022 neben den seit 2014 umkämpften Gebieten in Donezk und Luhansk zwei weitere große Besatzungszonen im Süden. Cherson lag strategisch am Dnipro und als Brückenkopf von der Krim ins ukrainische Kernland; Saporischschja verband die Landbrücke zur Krim mit dem Donbas-Raum.\n\n**Verwaltung unter Besatzung**\nIn den besetzten Teilen wurden russische Militär- und später zivile Verwaltungsstrukturen aufgebaut, Währungen und Behörden umgestellt, Proteste unterdrückt. Ukrainische Behörden und ein Teil der Bevölkerung wichen aus oder arbeiteten unter Zwang weiter. Genaue Opfer- und Flüchtlingszahlen für diese Phase sind umstritten und hängen von der Quelle ab; die Tatsache der militärischen Besetzung und der Einsetzung paralleler Strukturen ist unbestritten.\n\n**Spätere Entwicklung (Ausblick)**\nIm November 2022 zog sich Russland aus der Stadt Cherson und dem Westufer des Dnipro zurück; Teile der Oblast östlich bzw. am linken Ufer blieben unter russischer Kontrolle. Die Oblast Saporischschja blieb geteilt. Die im September 2022 von Russland organisierten Referenden und die formelle Aufnahme der Oblaste in die Russische Föderation (siehe eigene Station) beziehen sich auf genau diese Gebiete – auch soweit sie militärisch nicht vollständig gehalten wurden.\n\n**Bezug zum Thema**\nCherson und Saporischschja gehören nicht zum Donbas der Jahre 2014–2021. Sie sind Teil der Kriegserweiterung 2022 und der späteren Vier-Regionen-Eingliederung Russlands. Wer nur Donezk und Luhansk betrachtet, verfehlt die südliche Front und die Landbrücke zur Krim.",
+    "view_ua_west": "Illegale Besatzung ukrainischen Staatsgebiets im Angriffskrieg; Vorstufe zu Scheinreferenden und versuchter Annexion. Zivilbevölkerung unter Zwang und Repression.",
+    "view_ru": "Militärische Sicherung der Landbrücke zur Krim und Schutz russischsprachiger Gebiete; später Grundlage für Referenden und den Anschluss an Russland auf Wunsch der Behörden vor Ort.",
+    "streitpunkt": "Befreiung/Anschluss vs. völkerrechtswidrige Besatzung – und ob die spätere formelle Eingliederung ohne volle militärische Kontrolle der gesamten Oblaste überhaupt Bestand hat."
+  },
+  {
+    "id": "e094",
+    "date": "2022-09-30",
+    "year": 2022,
+    "thema": "Krieg 2022 · Formelle Eingliederung",
+    "title": "Referenden und Aufnahme von DNR, LNR, Cherson und Saporischschja in die Russische Föderation",
+    "short": "Ende September 2022: Von Russland organisierte Referenden in vier Gebieten; am 30. September Unterzeichnung der Aufnahmeverträge. Formelle Eingliederung als Föderationssubjekte – rechtlich und politisch scharf umstritten.",
+    "background": "Siehe Fakt und Lesarten.",
+    "sources": [],
+    "cross_refs": [
+      "e071",
+      "e072",
+      "e093",
+      "e017",
+      "e054",
+      "e086",
+      "e088"
+    ],
+    "clips": [],
+    "tags": [
+      "2022",
+      "Referendum",
+      "Cherson",
+      "Saporischschja",
+      "DNR",
+      "LNR",
+      "Annexion",
+      "Eingliederung"
+    ],
+    "actor": "RU",
+    "status": "freigegeben",
+    "fact": "**Referenden und Aufnahme von DNR, LNR, Cherson und Saporischschja in die RF (30. September 2022)**\n\n**Ablauf**\nVom 23. bis 27. September 2022 ließ Russland in den von ihm kontrollierten Teilen der Donezker und Lugansker Volksrepublik sowie in den besetzten Teilen der Oblaste Cherson und Saporischschja Abstimmungen über den Beitritt zur Russischen Föderation durchführen. Am 30. September 2022 unterzeichnete Präsident Putin in Moskau die Verträge über die Aufnahme der vier Einheiten als Subjekte der Russischen Föderation; Duma und Föderationsrat stimmten zu, die formelle Ratifikation folgte Anfang Oktober.\n\n**Unterschied zur Anerkennung vom 21. Februar 2022**\nIm Februar hatte Russland DNR und LNR als **unabhängige Staaten** anerkannt und Beistandsverträge geschlossen – noch ohne sie zu Föderationssubjekten zu machen. Im September/Oktober wurden DNR, LNR **sowie** Cherson und Saporischschja formell **in die RF eingegliedert**. Das ist der Akt, den viele Staaten und die Ukraine als **Annexion** bezeichnen. Wer Februar und September in eins setzt, vermengt Anerkennung der Unabhängigkeit und spätere Aufnahme in den eigenen Staatsverband.\n\n**Bedingungen der Abstimmungen**\nDie Referenden fanden unter militärischer Besatzung statt, ohne unabhängige internationale Beobachtung nach OSZE-Standard, mit von Russland eingesetzten Strukturen. Teile der Oblaste Cherson und Saporischschja standen zum Zeitpunkt der Abstimmung gar nicht unter russischer Kontrolle; dennoch wurden die Gebiete als Ganze in die RF-Verfassungslogik übernommen. Die Ukraine und die große Mehrheit der UN-Mitgliedstaaten erkennen die Abstimmungen und die Eingliederung nicht an.\n\n**Cherson und Saporischschja in dieser Kette**\nSie waren 2014 nicht Teil der Volksrepubliken-Referenden. Ihre Einbeziehung 2022 zeigt die Erweiterung über den Donbas hinaus: Landbrücke zur Krim, Südküste, Kernkraftwerk. Nach dem Rückzug Russlands aus der Stadt Cherson im November 2022 blieb die russische Rechtslage („Oblast ist RF-Subjekt“) und die militärische Lage (Teile weiter besetzt) auseinander.\n\n**Bezug zum Thema**\nErst mit diesem Schritt sind Cherson und Saporischschja in derselben formellen Eingliederungslogik wie Donezk und Luhansk. Für die Darstellung des Konflikts ist das der Punkt, an dem aus „Anerkennung von Republiken“ die „Vier-Regionen-Aufnahme“ wird – und an dem der Streit um den Begriff Annexion seinen schärfsten rechtlichen Bezug hat.",
+    "view_ua_west": "Klassische Annexion unter Waffengewalt und Scheinreferenden; null und nichtig. Cherson und Saporischschja machen sichtbar, dass es nicht nur um den Donbas von 2014 geht.",
+    "view_ru": "Selbstbestimmung der Bevölkerungen und Abschluss der 2014 begonnenen Linie; Aufnahme in die RF nach Abstimmung und Verträgen, analog zu anderen historischen Beitritten.",
+    "streitpunkt": "Formelle Eingliederung nach Referendum unter Besatzung: gültige Selbstbestimmung oder völkerrechtswidrige Annexion – und die Sonderrolle von Cherson/Saporischschja ohne 2014er Vorgeschichte."
   }
 ]
