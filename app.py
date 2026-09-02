@@ -203,16 +203,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-n1, n2, n3, n4 = st.columns([1, 1, 4, 1])
-with n1:
-    if st.button("← Älter", use_container_width=True, disabled=focus_idx == 0):
-        st.session_state.focus_id = events[focus_idx - 1]["id"]
-        st.rerun()
-with n2:
-    if st.button("Neuer →", use_container_width=True, disabled=focus_idx >= len(events) - 1):
-        st.session_state.focus_id = events[focus_idx + 1]["id"]
-        st.rerun()
-with n3:
+# Sprungmarke + Zähler (oben)
+s1, s2 = st.columns([5, 1])
+with s1:
     labels = [f"{e['date']}  ·  {e['title']}" for e in events]
     choice = st.selectbox(
         "Sprungmarke",
@@ -224,7 +217,7 @@ with n3:
     if choice != focus_idx:
         st.session_state.focus_id = events[choice]["id"]
         st.rerun()
-with n4:
+with s2:
     st.markdown(
         f"<div style='text-align:right;padding-top:0.55rem;color:#64748b;font-size:0.9rem'>"
         f"{focus_idx+1} / {len(events)}</div>",
@@ -254,6 +247,17 @@ for i, ev in enumerate(neighbors):
         ):
             st.session_state.focus_id = ev["id"]
             st.rerun()
+
+# Navigation DIREKT über der blauen Karte (mobil wichtig)
+nav1, nav2 = st.columns(2)
+with nav1:
+    if st.button("← Älter", use_container_width=True, disabled=focus_idx == 0):
+        st.session_state.focus_id = events[focus_idx - 1]["id"]
+        st.rerun()
+with nav2:
+    if st.button("Neuer →", use_container_width=True, disabled=focus_idx >= len(events) - 1):
+        st.session_state.focus_id = events[focus_idx + 1]["id"]
+        st.rerun()
 
 _title = (selected.get("title") or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 _thema = (selected.get("thema") or "—").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
