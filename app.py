@@ -15,14 +15,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-DATA_PATH = Path(__file__).parent / "data" / "events.json"
+def _find_events_json():
+    """Sucht events.json im Root und unter data/."""
+    base = Path(__file__).parent
+    candidates = [
+        base / "events.json",
+        base / "data" / "events.json",
+    ]
+    for c in candidates:
+        if c.exists():
+            return c
+    return None
 
 
 @st.cache_data
 def load_events():
-    if not DATA_PATH.exists():
+    path = _find_events_json()
+    if path is None:
         return []
-    with open(DATA_PATH, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     for e in data:
         e.setdefault("status", "freigegeben")
@@ -79,7 +90,7 @@ def actor_chip(actor: str) -> str:
 all_events = [e for e in load_events() if e.get("status", "freigegeben") == "freigegeben"]
 all_events = sorted(all_events, key=lambda x: x.get("date") or "")
 if not all_events:
-    st.error("Keine Ereignisse gefunden. Liegt data/events.json im Repository?")
+    st.error("Keine Ereignisse gefunden. Lege events.json ins Repo-Root oder nach data/events.json.")
     st.stop()
 
 st.sidebar.header("Suche & Filter")
