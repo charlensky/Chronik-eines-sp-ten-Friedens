@@ -1,4 +1,5 @@
-# Donbas-Dashboard – öffentlich, nur Lesen/Suche (ohne utils-Paket)
+# Donbas-Dashboard – öffentlich, nur Lesen/Suche
+# Zeitstrahl wie in der Offline-Version
 import json
 from pathlib import Path
 import streamlit as st
@@ -15,14 +16,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+
 def _find_events_json():
-    """Sucht events.json im Root und unter data/."""
     base = Path(__file__).parent
-    candidates = [
-        base / "events.json",
-        base / "data" / "events.json",
-    ]
-    for c in candidates:
+    for c in (base / "events.json", base / "data" / "events.json"):
         if c.exists():
             return c
     return None
@@ -93,6 +90,7 @@ if not all_events:
     st.error("Keine Ereignisse gefunden. Lege events.json ins Repo-Root oder nach data/events.json.")
     st.stop()
 
+# ---------- Sidebar ----------
 st.sidebar.header("Suche & Filter")
 search = st.sidebar.text_input("Volltextsuche", placeholder="Titel, Fakt, Lesart ...")
 years = sorted(set(int(e.get("year") or 0) for e in all_events))
@@ -117,7 +115,8 @@ st.sidebar.markdown("**Legende**")
 for a in actor_options:
     st.sidebar.markdown(actor_chip(a), unsafe_allow_html=True)
 
-filtered = []
+# ---------- Filter ----------
+events = []
 q = (search or "").strip().lower()
 for e in all_events:
     y = int(e.get("year") or 0)
@@ -142,60 +141,142 @@ for e in all_events:
         ).lower()
         if q not in blob:
             continue
-    filtered.append(e)
+    events.append(e)
 
-if not filtered:
+if not events:
     st.warning("Keine Ereignisse für diese Filter.")
     st.stop()
 
-if "idx" not in st.session_state:
-    st.session_state.idx = 0
-if st.session_state.idx >= len(filtered):
-    st.session_state.idx = 0
+# ---------- Fokus / Zeitstrahl ----------
+if "focus_id" not in st.session_state:
+    st.session_state.focus_id = events[-1]["id"]
+ids = [e["id"] for e in events]
+if st.session_state.focus_id not in ids:
+    st.session_state.focus_id = events[-1]["id"]
+focus_idx = ids.index(st.session_state.focus_id)
+selected = events[focus_idx]
+sel_actor = selected.get("actor") or "KONTEXT"
 
-jump = st.sidebar.selectbox(
-    "Ereignis wählen",
-    options=list(range(len(filtered))),
-    format_func=lambda i: f"{filtered[i].get('date', '')} - {filtered[i].get('title', '')[:60]}",
-    index=min(st.session_state.idx, len(filtered) - 1),
-)
-st.session_state.idx = jump
-e = filtered[st.session_state.idx]
-
-c1, c2, c3 = st.columns([1, 1, 4])
-with c1:
-    if st.button("Aelter") and st.session_state.idx > 0:
-        st.session_state.idx -= 1
-        st.rerun()
-with c2:
-    if st.button("Neuer") and st.session_state.idx < len(filtered) - 1:
-        st.session_state.idx += 1
-        st.rerun()
-with c3:
-    st.caption(f"{st.session_state.idx + 1} / {len(filtered)} in der Auswahl")
-
-actor = e.get("actor") or "KONTEXT"
-title = e.get("title") or ""
-date = e.get("date") or ""
-thema = e.get("thema") or ""
 st.markdown(
-    f'<div style="background:linear-gradient(120deg,#0b1f3a,#1d4ed8);color:#fff;'
-    f'padding:1.2rem 1.5rem;border-radius:16px;margin-bottom:1rem;">'
-    f"{actor_chip(actor)}"
-    f'<div style="opacity:0.85;font-size:0.9rem;margin-top:0.35rem;">{date} | {thema}</div>'
-    f'<h2 style="margin:0.4rem 0 0 0;color:#fff;">{title}</h2></div>',
+    """
+<style>
+.progress-track { height:6px; background:#e2e8f0; border-radius:99px; margin:0.4rem 0 1rem 0; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#3b82f6,#1d4ed8); border-radius:99px; }
+.focus-card {
+  background:linear-gradient(145deg,#1e3a8a 0%,#1d4ed8 100%); color:#fff;
+  border-radius:14px; padding:1.1rem 1.3rem; margin:0.6rem 0 1rem 0;
+  box-shadow:0 8px 24px rgba(29,78,216,0.22);
+}
+.focus-card h2 { margin:0.2rem 0 0.35rem 0; font-size:1.35rem; line-height:1.3; color:#fff; }
+.focus-card .meta { font-size:0.85rem; opacity:0.9; margin-bottom:0.45rem; }
+div[data-testid="stHorizontalBlock"] button {
+  white-space:pre-line; text-align:left; font-size:0.78rem; min-height:4.2rem; line-height:1.25;
+}
+div[data-testid="stTextArea"] textarea {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  font-size: 1rem !important;
+  line-height: 1.55 !important;
+  caret-color: transparent !important;
+}
+div[data-testid="stTextArea"] textarea:disabled {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+</style>
+""",
     unsafe_allow_html=True,
 )
 
-if e.get("short"):
-    st.markdown(e["short"])
+st.title("Donbas-Konflikt")
+st.caption("Fakt · Ukrainisch/westliche Lesart · Russische Lesart · Streitpunkt")
+
+pct = int((focus_idx / max(1, len(events) - 1)) * 100) if len(events) > 1 else 100
+st.markdown(
+    f'<div class="progress-track"><div class="progress-fill" style="width:{pct}%"></div></div>',
+    unsafe_allow_html=True,
+)
+
+n1, n2, n3, n4 = st.columns([1, 1, 4, 1])
+with n1:
+    if st.button("← Älter", use_container_width=True, disabled=focus_idx == 0):
+        st.session_state.focus_id = events[focus_idx - 1]["id"]
+        st.rerun()
+with n2:
+    if st.button("Neuer →", use_container_width=True, disabled=focus_idx >= len(events) - 1):
+        st.session_state.focus_id = events[focus_idx + 1]["id"]
+        st.rerun()
+with n3:
+    labels = [f"{e['date']}  ·  {e['title']}" for e in events]
+    choice = st.selectbox(
+        "Sprungmarke",
+        range(len(events)),
+        index=focus_idx,
+        format_func=lambda i: labels[i],
+        label_visibility="collapsed",
+    )
+    if choice != focus_idx:
+        st.session_state.focus_id = events[choice]["id"]
+        st.rerun()
+with n4:
+    st.markdown(
+        f"<div style='text-align:right;padding-top:0.55rem;color:#64748b;font-size:0.9rem'>"
+        f"{focus_idx+1} / {len(events)}</div>",
+        unsafe_allow_html=True,
+    )
+
+# Nachbar-Kacheln (Zeitstrahl)
+window = 3
+start = max(0, focus_idx - window)
+end = min(len(events), focus_idx + window + 1)
+neighbors = events[start:end]
+cols = st.columns(len(neighbors))
+for i, ev in enumerate(neighbors):
+    is_focus = ev["id"] == selected["id"]
+    with cols[i]:
+        d = ev.get("date") or ""
+        try:
+            short_date = d[8:10] + "." + d[5:7] + "." + d[2:4]
+        except Exception:
+            short_date = d
+        label = f"{'● ' if is_focus else ''}{short_date}\n{(ev.get('title') or '')[:36]}"
+        if st.button(
+            label,
+            key=f"nb_{ev['id']}",
+            use_container_width=True,
+            type="primary" if is_focus else "secondary",
+        ):
+            st.session_state.focus_id = ev["id"]
+            st.rerun()
+
+_title = (selected.get("title") or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+_thema = (selected.get("thema") or "—").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+st.markdown(
+    f"""
+<div class="focus-card">
+  {actor_chip(sel_actor)}
+  <div class="meta" style="margin-top:0.5rem">{selected.get('date','')} · {_thema}</div>
+  <h2>{_title}</h2>
+</div>
+""",
+    unsafe_allow_html=True,
+)
+
+if selected.get("short"):
+    st.markdown(selected["short"])
 
 st.subheader("Harter Fakt")
-fact = e.get("fact") or "-"
+fact = selected.get("fact") or "—"
 st.text_area(
     "Harter Fakt",
     value=fact,
-    height=min(420, 140 + fact.count(chr(10)) * 18),
+    height=min(420, 140 + fact.count("\n") * 18),
     disabled=True,
     label_visibility="collapsed",
 )
@@ -204,30 +285,35 @@ st.subheader("Lesarten im Vergleich")
 col_a, col_b = st.columns(2)
 with col_a:
     st.caption("UKRAINISCH / WESTLICH")
-    st.info(e.get("view_ua_west") or "-")
+    st.info(selected.get("view_ua_west") or "—")
 with col_b:
     st.caption("RUSSISCH")
-    st.info(e.get("view_ru") or "-")
+    st.info(selected.get("view_ru") or "—")
 
-if e.get("streitpunkt"):
+if selected.get("streitpunkt"):
     st.subheader("Streitpunkt")
-    st.warning(e["streitpunkt"])
+    st.warning(selected["streitpunkt"])
 
-tags = e.get("tags") or []
+tags = selected.get("tags") or []
 if tags:
-    st.markdown("**Tags:** " + " | ".join(tags))
+    st.markdown("**Tags:** " + " · ".join(tags))
 
-refs = e.get("cross_refs") or []
+refs = selected.get("cross_refs") or []
 if refs:
     st.subheader("Im Zusammenhang")
     for rid in refs:
         ref = event_by_id(all_events, rid)
         if not ref:
             continue
-        label = f"{ref.get('date', '')} - {ref.get('title', rid)[:70]}"
-        if st.button(label, key=f"ref_{e['id']}_{rid}"):
-            for i, fe in enumerate(filtered):
-                if fe["id"] == rid:
-                    st.session_state.idx = i
-                    st.rerun()
-            st.info(f"Nicht in der aktuellen Filterauswahl: {label}")
+        d = ref.get("date") or ""
+        try:
+            dlab = f"{d[8:10]}.{d[5:7]}.{d[0:4]}"
+        except Exception:
+            dlab = d
+        label = f"{dlab} · {(ref.get('title') or rid)[:70]}"
+        if st.button(label, key=f"ref_{selected['id']}_{rid}"):
+            if rid in ids:
+                st.session_state.focus_id = rid
+                st.rerun()
+            else:
+                st.info(f"Nicht in der aktuellen Filterauswahl: {label}")
