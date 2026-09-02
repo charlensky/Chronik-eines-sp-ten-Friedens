@@ -1,0 +1,100 @@
+{
+  "s001": {
+    "id": "s001",
+    "title": "Offizielle Ergebnisse des ukrainischen Unabhängigkeitsreferendums 1991",
+    "type": "Primärquelle / Wahldaten",
+    "url": "",
+    "note": "Zentrale Statistikbehörde der Ukraine"
+  },
+  "s002": {
+    "id": "s002",
+    "title": "Belaruser Protokoll & Almaty-Erklärung (Dezember 1991)",
+    "type": "Vertrag / Erklärung",
+    "url": "",
+    "note": "Grundlage der staatlichen Nachfolge und Grenzachtung"
+  },
+  "s003": {
+    "id": "s003",
+    "title": "Budapester Memorandum (5. Dezember 1994)",
+    "type": "Politische Vereinbarung",
+    "url": "https://www.pircenter.org/media/content/files/12/13939475580.pdf",
+    "note": "Sicherheitszusagen an Ukraine, Belarus und Kasachstan"
+  },
+  "s004": {
+    "id": "s004",
+    "title": "NATO-Russland-Grundakte (1997) und NATO-Erweiterungsbeschlüsse",
+    "type": "Offizielle Dokumente",
+    "url": "",
+    "note": "Grundakte + Beitrittsprotokolle 1999 und 2004 + Manöver-Dokumentation"
+  },
+  "s005": {
+    "id": "s005",
+    "title": "Bukarest-Gipfel-Erklärung der NATO (2008) und Georgien-Krieg",
+    "type": "Offizielle Erklärung / Berichte",
+    "url": "",
+    "note": "Aussage zu künftiger Mitgliedschaft von Ukraine und Georgien"
+  },
+  "s006": {
+    "id": "s006",
+    "title": "Chronologie und Berichte zum Euromaidan",
+    "type": "Sekundär / Medien + Berichte",
+    "url": "",
+    "note": "Verschiedene Quellen, inkl. investigativer Aufarbeitung der Schüsse"
+  },
+  "s007": {
+    "id": "s007",
+    "title": "Untersuchungen zu den Schüssen auf dem Maidan (u. a. Ballistik)",
+    "type": "Untersuchung",
+    "url": "",
+    "note": "Ukrainische und internationale Ballistik-Analysen, teilweise widersprüchlich"
+  },
+  "s008": {
+    "id": "s008",
+    "title": "UN-Generalversammlungsresolution 68/262 (27. März 2014)",
+    "type": "UN-Dokument",
+    "url": "",
+    "note": "Territoriale Integrität der Ukraine – Krim"
+  },
+  "s009": {
+    "id": "s009",
+    "title": "OSZE-Berichte und Chronologien zum Donbas ab 2014",
+    "type": "Beobachtermission",
+    "url": "",
+    "note": "Sonderbeobachtungsmission der OSZE in der Ukraine"
+  },
+  "s010": {
+    "id": "s010",
+    "title": "Minsk I (2014) und Minsk II-Protokoll (12. Februar 2015)",
+    "type": "Abkommen",
+    "url": "",
+    "note": "12- und 13-Punkte-Pakete im Normandie-/OSZE-Format"
+  },
+  "s011": {
+    "id": "s011",
+    "title": "Berichte zu den Gasstreits 2006/2009 und Druschba-Vorfall 2019",
+    "type": "Wirtschafts- und Medienberichte",
+    "url": "",
+    "note": "Energiekonflikte als Druckmittel und Verflechtung"
+  },
+  "s012": {
+    "id": "s012",
+    "title": "Berichte und Untersuchungen zum Brand in Odessa (2. Mai 2014)",
+    "type": "Untersuchung / Medien",
+    "url": "",
+    "note": "Umstrittene Gewaltfälle – unterschiedliche Narrative"
+  },
+  "s013": {
+    "id": "s013",
+    "title": "Ukrainische Sprachengesetze 2012, 2014 und 2019 – Texte und Analysen",
+    "type": "Gesetzestexte / Analysen",
+    "url": "",
+    "note": "Kolesnitschenko-Kivalov 2012, Aufhebungsversuch 2014, Staatssprachengesetz 2019"
+  },
+  "s014": {
+    "id": "s014",
+    "title": "Berichte und Untersuchungen zu Asow und Freiwilligenbataillonen 2014–2015",
+    "type": "Berichte / Analysen",
+    "url": "",
+    "note": "Gründung, Eingliederung in die Nationalgarde, unterschiedliche Bewertungen"
+  }
+}
